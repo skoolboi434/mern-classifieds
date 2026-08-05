@@ -51,4 +51,26 @@ h6 {
   }
 }
 
+.card-link {
+  text-decoration: none;
+}
+
+.custom-card {
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  h3 {
+    font-size: 20px;
+    color: $primary;
+  }
+
+  &:last-of-type {
+    margin-bottom: 30px;
+  }
+}
+
 @import '~bootstrap/scss/bootstrap';

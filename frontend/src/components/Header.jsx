@@ -16,12 +16,12 @@ const Header = () => {
           <Button variant='dark' className='me-2' onClick={handleShow}>
             <FaBars />
           </Button>
-          <a to='/'>
+          <LinkContainer to='/'>
             <Navbar.Brand className='m-auto'>MERN - Classifieds</Navbar.Brand>
-          </a>
-          <a href='/'>
+          </LinkContainer>
+          <LinkContainer to='/'>
             <FaShoppingCart className='text-white' />
-          </a>
+          </LinkContainer>
         </Container>
       </Navbar>
 
