@@ -34,7 +34,21 @@ h3,
 h4,
 h5,
 h6 {
-  color: $primary !important;
+  color: $primary;
+}
+
+.hero {
+  background-image: linear-gradient(to bottom right, #424a54, #92a4ba);
+  min-height: 260px;
+  font-family: 'Libre Calson Text';
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h3,
+  span {
+    color: $light;
+  }
 }
 
 @import '~bootstrap/scss/bootstrap';
