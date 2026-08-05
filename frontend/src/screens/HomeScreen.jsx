@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Row, Col, Container, Card } from 'react-bootstrap';
+import axios from 'axios';
 import CustomCard from '../components/CustomCard';
-import publications from '../publications';
+
 import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 
 const HomeScreen = () => {
+  const [publications, setPublications] = useState([]);
+
+  useEffect(() => {
+    const fetchPublications = async () => {
+      const { data } = await axios.get('/api/publications');
+      setPublications(data);
+    };
+
+    fetchPublications();
+  }, []);
+
+  console.log(publications);
   return (
     <>
       <Hero title='Create a New Classified' text='Start creating a classified ad by selecting a Publication' />

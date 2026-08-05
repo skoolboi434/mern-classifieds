@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import { Row, Col, Container, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import CustomCard from '../components/CustomCard';
 import Hero from '../components/Hero';
-import publications from '../publications';
 
 const ProductsScreen = () => {
-  const { slug: publicationSlug } = useParams();
-  const publication = publications.find(p => p.slug === publicationSlug);
-  console.log(publication);
+  const [publication, setPublication] = useState();
+
+  const { slug: slug } = useParams();
+
+  useEffect(() => {
+    const fetchPublication = async () => {
+      const { data } = await axios.get(`/api/publications/${slug}`);
+      setPublication(data);
+    };
+
+    fetchPublication();
+  }, [slug]);
 
   return (
     <div>
@@ -18,7 +27,7 @@ const ProductsScreen = () => {
       <Container className='mt-5'>
         <Row>
           <Col md={12} lg={3}>
-            <Link to={`/${publication.slug}/products`}>
+            <Link>
               <CustomCard title='Product Title' />
             </Link>
           </Col>
