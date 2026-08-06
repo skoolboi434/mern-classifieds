@@ -27,7 +27,7 @@ const HomeScreen = () => {
         <Row>
           {publications.map(pub => (
             <Col md={12} lg={3} key={pub._id}>
-              <Link to={`/publications/${pub.slug}`} className='card-link'>
+              <Link to={`/publications/${pub._id}`} className='card-link'>
                 <CustomCard title={pub.name} />
               </Link>
             </Col>

@@ -9,16 +9,16 @@ import Hero from '../components/Hero';
 const ProductsScreen = () => {
   const [publication, setPublication] = useState();
 
-  const { slug: slug } = useParams();
+  const { id: id } = useParams();
 
   useEffect(() => {
     const fetchPublication = async () => {
-      const { data } = await axios.get(`/api/publications/${slug}`);
+      const { data } = await axios.get(`/api/publications/${id}`);
       setPublication(data);
     };
 
     fetchPublication();
-  }, [slug]);
+  }, [id]);
 
   return (
     <div>
