@@ -1,0 +1,8 @@
+[
+  { "name": "Announcements", "slug": "announcements" },
+  { "name": "Auction/Estate/Sale", "slug": "auction-estate-sale" },
+  { "name": "Housing", "slug": "housing" },
+  { "name": "Legal", "slug": "legal" },
+  { "name": "Services", "slug": "services" },
+  { "name": "Domestics/Janitorial", "slug": "domestics-janitorial" }
+]

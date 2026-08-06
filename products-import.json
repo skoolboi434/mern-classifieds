@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Housing",
+    "inStock": true,
+    "publications": ["6a68f4a90ad34954dda8a443"],
+    "price": 5.99
+  },
+  {
+    "name": "Services",
+    "inStock": true,
+    "publications": ["6a68f4a90ad34954dda8a443"],
+    "price": 5.99
+  }
+]
