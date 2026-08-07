@@ -1,38 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Container, Card } from 'react-bootstrap';
-import axios from 'axios';
+
 import CustomCard from '../components/CustomCard';
+import { useGetPublicationsQuery } from '../slices/publicationsApiSlice';
 
 import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 
 const HomeScreen = () => {
-  const [publications, setPublications] = useState([]);
+  const { data: publications, isLoading, isError } = useGetPublicationsQuery();
 
-  useEffect(() => {
-    const fetchPublications = async () => {
-      const { data } = await axios.get('/api/publications');
-      setPublications(data);
-    };
-
-    fetchPublications();
-  }, []);
-
-  console.log(publications);
   return (
     <>
       <Hero title='Create a New Classified' text='Start creating a classified ad by selecting a Publication' />
 
       <Container className='mt-5'>
-        <Row>
-          {publications.map(pub => (
-            <Col md={12} lg={3} key={pub._id}>
-              <Link to={`/publications/${pub._id}`} className='card-link'>
-                <CustomCard title={pub.name} />
-              </Link>
-            </Col>
-          ))}
-        </Row>
+        {isLoading ? (
+          <Loader />
+        ) : isError ? (
+          <Message>{isError?.data?.message || isError.isError}</Message>
+        ) : (
+          <>
+            <Row>
+              {publications.map(pub => (
+                <Col md={12} lg={3} key={pub._id}>
+                  <Link to={`/publications/${pub._id}`} className='card-link'>
+                    <CustomCard title={pub.name} />
+                  </Link>
+                </Col>
+              ))}
+            </Row>
+          </>
+        )}
       </Container>
     </>
   );

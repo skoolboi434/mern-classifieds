@@ -3,22 +3,16 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Row, Col, Container, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useGetPublicationByIdQuery } from '../slices/publicationsApiSlice';
 import CustomCard from '../components/CustomCard';
 import Hero from '../components/Hero';
 
 const ProductsScreen = () => {
-  const [publication, setPublication] = useState();
+  const { id: publicationId } = useParams();
 
-  const { id: id } = useParams();
+  const { data: publication, isLoading, error } = useGetPublicationByIdQuery(publicationId);
 
-  useEffect(() => {
-    const fetchPublication = async () => {
-      const { data } = await axios.get(`/api/publications/${id}`);
-      setPublication(data);
-    };
-
-    fetchPublication();
-  }, [id]);
+  console.log(publication);
 
   return (
     <div>
