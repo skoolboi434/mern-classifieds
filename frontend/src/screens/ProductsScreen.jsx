@@ -3,16 +3,16 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Row, Col, Container, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useGetPublicationByIdQuery } from '../slices/publicationsApiSlice';
+import { useGetPublicationByIdQuery, useGetProductsByPublicationQuery } from '../slices/publicationsApiSlice';
 import CustomCard from '../components/CustomCard';
 import Hero from '../components/Hero';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 
 const ProductsScreen = () => {
   const { id: publicationId } = useParams();
 
-  const { data: publication, isLoading, error } = useGetPublicationByIdQuery(publicationId);
-
-  console.log(publication);
+  const { data: productData, isLoading, error } = useGetProductsByPublicationQuery(publicationId);
 
   return (
     <div>
@@ -20,11 +20,23 @@ const ProductsScreen = () => {
 
       <Container className='mt-5'>
         <Row>
-          <Col md={12} lg={3}>
-            <Link>
-              <CustomCard title='Product Title' />
-            </Link>
-          </Col>
+          {isLoading ? (
+            <Loader />
+          ) : error ? (
+            <Message>{error?.data?.message || error.error}</Message>
+          ) : (
+            <>
+              <Row>
+                {productData.map(product => (
+                  <Col md={12} lg={3} key={product._id}>
+                    <Link to={`/publications/${publicationId}/${product._id}`} className='card-link'>
+                      <CustomCard title={product.name} />
+                    </Link>
+                  </Col>
+                ))}
+              </Row>
+            </>
+          )}
         </Row>
       </Container>
     </div>

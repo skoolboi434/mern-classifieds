@@ -1,5 +1,6 @@
 import asyncHandler from '../middleware/asyncHandler.js';
 import Publication from '../models/publicationModel.js';
+import Product from '../models/productModel.js';
 
 // @desc Fetch All Publications
 // @route GET /api/publications
@@ -20,7 +21,22 @@ const getPublicationById = asyncHandler(async (req, res) => {
   if (publication) {
     return res.json(publication);
   }
-  res.status(404).json({ message: 'Product not found' });
+  res.status(404).json({ message: 'Publication not found' });
 });
 
-export { getPublications, getPublicationById };
+// Product Controllers
+
+// @desc Fetch Product by ID
+// @route GET /api/publications/:id
+// @access Private
+
+const getProductsByPublication = asyncHandler(async (req, res) => {
+  const products = await Product.find({ publications: req.params.id });
+
+  if (products) {
+    return res.json(products);
+  }
+  res.status(404).json({ message: 'Products not found' });
+});
+
+export { getPublications, getPublicationById, getProductsByPublication };

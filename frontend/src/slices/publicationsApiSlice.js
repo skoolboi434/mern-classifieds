@@ -14,8 +14,14 @@ export const publicationsApiSlice = apiSlice.injectEndpoints({
         url: `${PUBLICATIONS_URL}/${publicationId}`
       }),
       keepUnusedDataFor: 5
+    }),
+    getProductsByPublication: builder.query({
+      query: publicationId => ({
+        url: `${PUBLICATIONS_URL}/${publicationId}/products`
+      }),
+      keepUnusedDataFor: 5
     })
   })
 });
 
-export const { useGetPublicationsQuery, useGetPublicationByIdQuery } = publicationsApiSlice;
+export const { useGetPublicationsQuery, useGetPublicationByIdQuery, useGetProductsByPublicationQuery } = publicationsApiSlice;
