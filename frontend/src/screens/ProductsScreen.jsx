@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import { Row, Col, Container, Card } from 'react-bootstrap';
+
+import { Row, Col, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useGetPublicationByIdQuery, useGetProductsByPublicationQuery } from '../slices/publicationsApiSlice';
+import { useGetProductsByPublicationQuery } from '../slices/publicationsApiSlice';
 import CustomCard from '../components/CustomCard';
 import Hero from '../components/Hero';
 import Loader from '../components/Loader';

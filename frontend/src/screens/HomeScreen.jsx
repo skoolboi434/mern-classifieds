@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Row, Col, Container, Card } from 'react-bootstrap';
+import React from 'react';
+import { Row, Col, Container } from 'react-bootstrap';
 
 import CustomCard from '../components/CustomCard';
 import { useGetPublicationsQuery } from '../slices/publicationsApiSlice';

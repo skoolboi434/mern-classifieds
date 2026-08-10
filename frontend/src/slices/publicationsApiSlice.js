@@ -20,8 +20,33 @@ export const publicationsApiSlice = apiSlice.injectEndpoints({
         url: `${PUBLICATIONS_URL}/${publicationId}/products`
       }),
       keepUnusedDataFor: 5
+    }),
+    getProductById: builder.query({
+      query: productId => ({
+        url: `${PUBLICATIONS_URL}/products/${productId}`
+      }),
+      keepUnusedDataFor: 5
+    }),
+    getCategoryChildrenById: builder.query({
+      query: categoryId => ({
+        url: `${PUBLICATIONS_URL}/categories/${categoryId}/children`
+      }),
+      keepUnusedDataFor: 5
+    }),
+    getTopLevelCategoriesByProduct: builder.query({
+      query: productId => ({
+        url: `${PUBLICATIONS_URL}/products/${productId}/categories`
+      }),
+      keepUnusedDataFor: 5
     })
   })
 });
 
-export const { useGetPublicationsQuery, useGetPublicationByIdQuery, useGetProductsByPublicationQuery } = publicationsApiSlice;
+export const {
+  useGetPublicationsQuery,
+  useGetPublicationByIdQuery,
+  useGetProductsByPublicationQuery,
+  useGetProductByIdQuery,
+  useGetCategoryChildrenByIdQuery,
+  useGetTopLevelCategoriesByProductQuery
+} = publicationsApiSlice;
