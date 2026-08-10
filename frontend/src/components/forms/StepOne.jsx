@@ -19,7 +19,6 @@ const StepOne = ({ nextStep, handleFormData, values }) => {
 
   return (
     <>
-      <Hero title={`Create a New ${product?.name} Classified`} text='Follow the steps below to start advertising' />
       <Container className='border border-dark rounded shadow p-3'>
         <div className='text-center my-3'>
           <p>
@@ -40,9 +39,11 @@ const StepOne = ({ nextStep, handleFormData, values }) => {
               ))}
             </Form.Select>
           </Form.Group>
-          <Button variant='primary' type='submit'>
-            Continue
-          </Button>
+          <div className='d-flex justify-content-lg-end'>
+            <Button variant='primary' type='submit'>
+              Continue
+            </Button>
+          </div>
         </Form>
       </Container>
     </>

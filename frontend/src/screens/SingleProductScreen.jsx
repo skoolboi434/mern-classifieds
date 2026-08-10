@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Row, Col, Container, Card, Form } from 'react-bootstrap';
 import Hero from '../components/Hero';
 import StepOne from '../components/forms/StepOne';
 import StepTwo from '../components/forms/StepTwo';
 import StepThree from '../components/forms/StepThree';
 import Final from '../components/forms/Final';
+import { useGetProductByIdQuery } from '../slices/publicationsApiSlice';
 
 const SingleProductScreen = () => {
+  const { productId } = useParams();
+  const { data: product } = useGetProductByIdQuery(productId);
   // state for steps
   const [step, setStep] = useState(1);
 
@@ -50,18 +54,22 @@ const SingleProductScreen = () => {
     // Case 1: show stepOne form and passing nextStep, prevStep and handleInputData as handle
     case 1:
       return (
-        <div className='classified-ad-form'>
-          <StepOne nextStep={nextStep} handleFormData={handleInputData} values={formData} />
-        </div>
+        <>
+          <Hero title={`Create a New ${product?.name} Classified`} text='Follow the steps below to start advertising' />
+          <div className='classified-ad-form'>
+            <StepOne nextStep={nextStep} handleFormData={handleInputData} values={formData} />
+          </div>
+        </>
       );
     // show step two form passing nextStep, prevStep and handleInputData as handleForm
     case 2:
       return (
-        <div className='classified-ad-form'>
-          <Container>
+        <>
+          <Hero title={`Create a New ${product?.name} Classified`} text='Follow the steps below to start advertising' />
+          <div className='classified-ad-form'>
             <StepTwo nextStep={nextStep} prevStep={prevStep} handleFormData={handleInputData} values={formData} />
-          </Container>
-        </div>
+          </div>
+        </>
       );
     case 3:
       return (
